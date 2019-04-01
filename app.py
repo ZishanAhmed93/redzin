@@ -47,6 +47,7 @@ def hot_subbreddit(subreddit):
 
     for submission in _hot_subreddit:
         link = submission.url
+        number_of_links = 0
 
         if not submission.is_self:
             if 'imgur.com/a/' in link:
@@ -55,9 +56,18 @@ def hot_subbreddit(subreddit):
 
                 stripped_id = re.sub(domain_pattern, '', link, flags=re.IGNORECASE)
                 stripped_id = re.search(token_pattern, stripped_id).groups()[0]
-                res = requests.get('https://api.imgur.com/3/album/' + stripped_id, headers={'Authorization':'Client-ID a6031dbafe07fef'})
-                res_as_json = res.json()
-                link = res_as_json
+                res = requests.get('https://api.imgur.com/3/album/' + stripped_id + '/images', headers={'Authorization':'Client-ID a6031dbafe07fef'})
+                res_as_json = res.json()["data"]
+
+                res_as_list = []
+
+                for x in res_as_json:
+                    res_as_list.append(x["link"])
+                    number_of_links += 1
+                    print(number_of_links)
+
+                link = res_as_list
+
 
             elif link.endswith('.jpg') or link.endswith('.png'):
                 link = submission.url
@@ -65,7 +75,7 @@ def hot_subbreddit(subreddit):
             elif 'imgur.com/' in link:
                 link = submission.url
 
-            post = {'id': submission.id, 'title': submission.title, 'ups': submission.ups, 'downs': submission.downs, 'visited': submission.visited, 'url': link}
+            post = {'id': submission.id, 'title': submission.title, 'ups': submission.ups, 'downs': submission.downs, 'visited': submission.visited, 'url_count' : number_of_links if number_of_links else 1, 'url': link}
             list_hot_subreddit.append(post)
 
     json_list_hot_subreddit = jsonify(list_hot_subreddit)
