@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Subreddit extends React.Component{
+class Home extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -23,4 +23,4 @@ class Subreddit extends React.Component{
     }
 }
 
-export default Subreddit;
+export default Home;

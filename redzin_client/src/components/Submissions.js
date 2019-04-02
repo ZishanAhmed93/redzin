@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { matchPath } from 'react-router';
 
-Class Submission extends React.Component{
-    constroctor(props){
+class Submission extends React.Component{
+    constructor(props){
         super(props);
         // may not need state if all data is passed in props
+
+        // current route/path
+        // this.props.location.pathname
+
         this.state={
             submission_id: '',
             submission_title: '',
@@ -23,6 +28,7 @@ Class Submission extends React.Component{
         return(
             <div id="subreddit" className="subreddit">
                 <p>this is the subreddit</p>
+                <p>${this.props.location.pathname}</p>
 
             </div>
 
