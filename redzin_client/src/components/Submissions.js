@@ -6,8 +6,6 @@ class Submission extends React.Component{
         super(props);
         // may not need state if all data is passed in props
 
-        // current route/path
-        // this.props.location.pathname
 
         this.state={
             submission_id: '',
@@ -28,7 +26,7 @@ class Submission extends React.Component{
         return(
             <div id="subreddit" className="subreddit">
                 <p>this is the subreddit</p>
-                <p>${this.props.location.pathname}</p>
+               
 
             </div>
 

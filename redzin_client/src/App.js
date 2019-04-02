@@ -11,11 +11,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      
+      <p>Hello Redzin</p>
+      
       <Router>
-        <Route path="/" exact component={Home} />
+        <Route exact path="/" exact component={Home} />
         <Route path="/r/:subreddit" component={Subreddit} />
       </Router>
-      <p>Hello Redzin</p>
+      
 
       </div>
     );

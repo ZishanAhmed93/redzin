@@ -15,7 +15,7 @@ class Home extends React.Component{
     render(){
         return(
             <div id="subreddit" className="subreddit">
-                <p>this is the subreddit</p>
+                <p>This is Home</p>
 
             </div>
 
