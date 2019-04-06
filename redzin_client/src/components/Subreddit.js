@@ -17,9 +17,10 @@ class Subreddit extends React.Component{
         let subreddit = this.props.match.params.subreddit;
         let request = 'http://127.0.0.1:5000/r/' + subreddit + '/';
         
-        fetch(request, {mode: 'no-cors'})
-            .then(response => console.log(response));
-            // .then(data => console.log(data));
+        fetch(request)
+            .then(res => res.json())
+            .then(submissions => this.setState({submissions}))
+            .then(console.log(this.state));
     }
 
     render(){
@@ -30,7 +31,17 @@ class Subreddit extends React.Component{
                 <p>this is the subreddit</p>
                 <p>{subreddit}</p>
 
-                <p>{this.state.data}</p>
+                <div>{this.state.submissions.map(sub =>
+                    <div key={sub.id}>
+                        <p>id: {sub.id}</p>
+                        <p>title: {sub.title}</p>
+                        <p>ups: {sub.ups}</p>
+                        <p>downs: {sub.downs}</p>
+                        <p>url_count: {sub.url_coun}</p>
+                        <p>url: {sub.url}</p>
+                        <p>visited: {sub.visited}</p>
+                    </div>
+                )}</div>
             </div>
 
         )
