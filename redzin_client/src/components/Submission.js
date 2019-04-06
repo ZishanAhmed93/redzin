@@ -25,8 +25,14 @@ class Submission extends React.Component{
     render(){
         return(
             <div id="subreddit" className="subreddit">
-                <p>this is the subreddit</p>
-               
+                <p>this is the POST</p>
+                <p>id: {this.props.submission.id}</p>
+                <p>title: {this.props.submission.title}</p>
+                <p>ups: {this.props.submission.ups}</p>
+                <p>downs: {this.props.submission.downs}</p>
+                <p>url_count: {this.props.submission.url_coun}</p>
+                <p>url: {this.props.submission.url}</p>
+                <p>visited: {this.props.submission.visited}</p>
 
             </div>
 

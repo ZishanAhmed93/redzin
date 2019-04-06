@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Submission from './Submission';
 
 class Subreddit extends React.Component{
     constructor(props){
@@ -33,13 +34,7 @@ class Subreddit extends React.Component{
 
                 <div>{this.state.submissions.map(sub =>
                     <div key={sub.id}>
-                        <p>id: {sub.id}</p>
-                        <p>title: {sub.title}</p>
-                        <p>ups: {sub.ups}</p>
-                        <p>downs: {sub.downs}</p>
-                        <p>url_count: {sub.url_coun}</p>
-                        <p>url: {sub.url}</p>
-                        <p>visited: {sub.visited}</p>
+                     <Submission submission={sub} />
                     </div>
                 )}</div>
             </div>
