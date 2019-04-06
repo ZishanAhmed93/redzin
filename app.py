@@ -9,6 +9,8 @@
 # IMPORTS
 ############
 from flask import *
+from flask_cors import CORS
+
 import praw
 import requests
 import re
@@ -16,6 +18,7 @@ import re
 # APP SETUP
 ##############
 app = Flask(__name__)
+CORS(app)
 
 reddit = praw.Reddit(
     client_id = 'WO7q0-MUoVUadQ',
