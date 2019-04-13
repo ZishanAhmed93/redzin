@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Submission from './Submission';
 
+import '../css/Submission.css';
+
 class Subreddit extends React.Component{
     constructor(props){
         super(props);
@@ -8,9 +10,6 @@ class Subreddit extends React.Component{
             submissions: []
         }
     }
-
-    // current route/path
-    // this.props.location.pathname
 
     componentDidMount(){
         // fetch
@@ -26,6 +25,8 @@ class Subreddit extends React.Component{
 
     render(){
         let subreddit = this.props.match.params.subreddit;
+        let layout_theme = 'leftTest';
+        let layout_class = 'submission ' + layout_theme;
 
         return(
             <div id="subreddit" className="subreddit">
@@ -33,9 +34,9 @@ class Subreddit extends React.Component{
                 <p>{subreddit}</p>
 
                 <div>{this.state.submissions.map(sub =>
-                    <div key={sub.id}>
-                     <Submission submission={sub} />
-                    </div>
+
+                     <Submission key={sub.id} submission={sub} layout_class={layout_class} />
+
                 )}</div>
             </div>
 
