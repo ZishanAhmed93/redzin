@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { matchPath } from 'react-router';
-
 import '../css/Submission.css';
 
 

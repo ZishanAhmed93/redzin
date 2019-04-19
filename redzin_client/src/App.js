@@ -5,7 +5,7 @@ import Home from './components/Home'
 import Subreddit from './components/Subreddit'
 
 import './css/normalize.css';
-import './css/App.css';
+import './css/App.scss';
 
 class App extends Component {
   render() {

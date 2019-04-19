@@ -1,22 +1,11 @@
-# INDEX
-#########
-# IMPORTS
-# APP SETUP
-# ROUTES
-# DEBUG
-##########
-
-# IMPORTS
-############
 from flask import *
 from flask_cors import CORS
-
 import praw
 import requests
 import re
 
-# APP SETUP
-##############
+
+
 app = Flask(__name__)
 CORS(app)
 
@@ -25,26 +14,17 @@ reddit = praw.Reddit(
     client_secret = 'QNG971NQ6_69yLXdzyZm5Y71Blg',
     user_agent = 'redzin v1.0 by /u/Verser'
 )
-#imgur
-#Authorization = a6031dbafe07fef
+
 imgur_cliet_id = 'a6031dbafe07fef'
 
-# imgur get album images endpoint
-# https://api.imgur.com/3/album/{{albumHash}}/images
-# curl --location --request GET "https://api.imgur.com/3/album/{{albumHash}}/images" \
-#   --header "Authorization: Client-ID {{clientId}}"
 
 
-# Routes
-###########
 @app.route('/')
 def index():
     return 'Welcome to Redzin'
 
-
 @app.route('/r/<subreddit>/')
 def hot_subbreddit(subreddit):
-
     _hot_subreddit = reddit.subreddit(subreddit).hot(limit = 10)
     list_hot_subreddit = []
 
@@ -71,12 +51,11 @@ def hot_subbreddit(subreddit):
 
                 link = res_as_list
 
-
             elif link.endswith('.jpg') or link.endswith('.png'):
                 link = submission.url
 
             elif 'imgur.com/' in link:
-                link = submission.url
+                link = submission.url + '.jpg'
 
             post = {'id': submission.id, 'title': submission.title, 'ups': submission.ups, 'downs': submission.downs, 'visited': submission.visited, 'url_count' : number_of_links if number_of_links else 1, 'url': link}
             list_hot_subreddit.append(post)
@@ -85,29 +64,7 @@ def hot_subbreddit(subreddit):
 
     return json_list_hot_subreddit
 
-# need to restructure route to accept default ('/r/<subreddit>/') or top ('/r/<subreddit>/top'), new, rising controversial etc
-# @app.route('/r/<subreddit>/top')
-# def top_subbreddit(subreddit):
-#
-#     _top_subreddit = reddit.subreddit(subreddit).top(limit = 10)
-#     list_top_subreddit = []
-#
-#     for submission in _top_subreddit:
-#         if not submissionis_self:
-#             if 'imgur.com/a/' in link:
-#             # send to imgur album downloader
-#             elif link.endswith('.jpg') or link.endswith('.png'):
-#             # send to image downloader
-#             elif 'imgur.com/' in link:
-#             # send to single imgage imgur downloader
-#             post =  {'id': submission.id, 'title': submission.title, 'ups': submission.ups, 'downs': submission.downs, 'visited': submission.visited}
-#             list_top_subreddit.append(post)
-#
-#     json_list_top_subreddit = jsonify(list_top_subreddit)
-#
-#     return json_list_top_subreddit
 
-# DEBUG
-##########
+
 if __name__ == '__main__':
     app.run(debug=True)

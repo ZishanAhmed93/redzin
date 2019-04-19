@@ -3,6 +3,16 @@ import Submission from './Submission';
 
 import '../css/Submission.css';
 
+function getRandomTheme(){
+    let themes = ['leftTest', 'rightTest'];
+
+    let min = 0;
+    let max = themes.length - 1;
+    let ran = Math.floor(Math.random() * (max - min + 1) ) + min;
+
+    return themes[ran];
+  }
+
 class Subreddit extends React.Component{
     constructor(props){
         super(props);
@@ -23,10 +33,11 @@ class Subreddit extends React.Component{
             .then(console.log(this.state));
     }
 
+
+
     render(){
         let subreddit = this.props.match.params.subreddit;
-        let layout_theme = 'leftTest';
-        let layout_class = 'submission ' + layout_theme;
+
 
         return(
             <div id="subreddit" className="subreddit">
@@ -35,7 +46,8 @@ class Subreddit extends React.Component{
 
                 <div>{this.state.submissions.map(sub =>
 
-                     <Submission key={sub.id} submission={sub} layout_class={layout_class} />
+
+                    <Submission key={sub.id} submission={sub} layout_class={getRandomTheme()} />
 
                 )}</div>
             </div>

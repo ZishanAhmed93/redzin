@@ -2,12 +2,12 @@
     width: 50vw;
     height: auto;
 
-    border: 2px solid red;
-
     margin-top: auto;
     margin-bottom: auto;
 }
 .leftTest{
+    border: 2px solid red;
+
     display: inline-grid;
     grid-template-columns: 20px auto 20px;
     grid-template-rows: 20px auto 20px;
@@ -36,6 +36,8 @@
     max-width: 100%;
 }
 .rightTest{
+    border: 2px solid blue;
+
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
